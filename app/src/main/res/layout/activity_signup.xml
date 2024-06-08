@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.account.SignupActivity"
+    android:orientation="vertical"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    >
+                    <com.example.hotel_customer.view.custome.Input
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:inputLabel="Email"
+                        app:inputHint="Email"
+                        android:id="@+id/ipEmail"
+                        />
+
+                    <com.example.hotel_customer.view.custome.Input
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:inputLabel="Mật khẩu"
+                        app:inputHint="Mật khẩu"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/ipPassword"
+                        />
+
+                    <com.example.hotel_customer.view.custome.Input
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:inputLabel="Họ"
+                        app:inputHint="Họ"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/ipFirstName"
+                        />
+
+                    <com.example.hotel_customer.view.custome.Input
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:inputLabel="Tên"
+                        app:inputHint="Tên"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/ipLastName"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="Giới tính"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="Nam"
+                                android:id="@+id/rbMale"
+                                android:checked="true"
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="Nữ"
+                                android:id="@+id/rbFemale"
+
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Khác"
+                                android:id="@+id/rbOrther"
+
+                                />
+                        </RadioGroup>
+
+                        <com.example.hotel_customer.view.custome.PickDate
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            app:pickDateLabel="Ngày sinh"
+                            android:id="@+id/pdBirthDay"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_fill_rounded_blue"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:text="Tiếp"
+                    android:layout_margin="20dp"
+                    android:id="@+id/btnNext"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

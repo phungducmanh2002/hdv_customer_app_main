@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Input">
+        <attr name="inputLabel" format="string" />
+        <attr name="inputHint" format="string" />
+        <attr name="inputText" format="string" />
+        <attr name="inputWarn" format="string" />
+        <attr name="inputLine" format="integer" />
+
+        <attr name="inputLength" format="integer" />
+
+        <attr name="inputType" format="enum">
+            <enum name="text" value="140"/>
+            <enum name="number" value="0x00000002"/>
+            <enum name="password" value="129"/>
+        </attr>
+
+
+        <attr name="inputTextAlign" format="enum">
+            <enum name="textStart" value="2"/>
+            <enum name="textEnd" value="3"/>
+            <enum name="center" value="4"/>
+            <enum name="viewStart" value="5"/>
+            <enum name="viewEnd" value="6"/>
+        </attr>
+
+        <attr name="inputBackground" format="reference" />
+        <attr name="inputTextColor" format="reference" />
+
+    </declare-styleable>
+    <declare-styleable name="MenuItem">
+        <attr name="menuItemText" format="string" />
+        <attr name="menuItemIcon" format="reference"/>
+        <attr name="menuItemBackground" format="reference"/>
+        <attr name="menuItemTextColor" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="HotelPanel">
+        <attr name="hotelPanelImage" format="reference" />
+        <attr name="hotelPanelHotelName" format="string"/>
+        <attr name="hotelPanelHotelDescription" format="string"/>
+        <attr name="hotelPanelHotelStart" format="float"/>
+        <attr name="hotelPanelHotelPayForNight" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="HotelItem">
+        <attr name="hotelItemImage" format="reference" />
+        <attr name="hotelItemHotelName" format="string"/>
+        <attr name="hotelItemHotelDescription" format="string"/>
+        <attr name="hotelItemHotelStart" format="float"/>
+        <attr name="hotelItemHotelPayForNight" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="BookingItem">
+        <attr name="BookingItemID" format="integer"/>
+        <attr name="BookingItemCheckinDate" format="string"/>
+        <attr name="BookingItemCheckoutDate" format="string"/>
+        <attr name="BookingItemStatus" format="integer"/>
+        <attr name="BookingItemTotalMoney" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="PickDate">
+        <attr name="pickDateLabel" format="string"/>
+        <attr name="pickDateWarn" format="string"/>
+        <attr name="pickDateText" format="string"/>
+        <attr name="pickDateIcon" format="reference"/>
+    </declare-styleable>
+</resources>

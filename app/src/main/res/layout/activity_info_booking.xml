@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.booking.InfoBookingActivity"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+
+        <com.example.hotel_customer.view.custome.Input
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inputLabel="Tên"
+            app:inputHint="Tên"
+            android:id="@+id/ipPersonName"
+            />
+        <com.example.hotel_customer.view.custome.Input
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inputLabel="Số điện thoại"
+            app:inputHint="Số điện thoại"
+            android:layout_marginTop="20dp"
+            android:id="@+id/ipPersonPhone"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lời nhắn"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_fill_rounded_white"
+                android:hint="Lời nhắn..."
+                android:textAlignment="textStart"
+                android:padding="10dp"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="tiếp"
+            android:background="@drawable/bg_fill_rounded_blue"
+            android:textColor="@color/white"
+            android:id="@+id/btnNext"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
