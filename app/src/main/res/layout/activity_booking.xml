@@ -29,7 +29,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="181102" />
+                android:text="181102"
+                android:id="@+id/tvIdBooking"
+                />
         </LinearLayout>
 
 
@@ -50,7 +52,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18/11/2002" />
+                android:text="18/11/2002"
+                android:id="@+id/tvCheckin"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -69,7 +73,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20/11/2002" />
+                android:text="20/11/2002"
+                android:id="@+id/tvCheckout"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +94,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="chưa thanh toán" />
+                android:text="chưa thanh toán"
+                android:id="@+id/tvStatus"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -115,37 +123,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/rooms"
+                    >
 
-                    <LinearLayout
+                    <com.example.hotel_customer.view.custome.RoomBook
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/bg_fill_rounded_white"
-                        android:gravity="center"
-                        android:padding="10dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="A01" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Single queen" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="100.000 VNĐ" />
-                    </LinearLayout>
+                        />
 
 
                 </LinearLayout>
@@ -170,7 +155,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:text="200.000 VNĐ" />
+                android:text="0 VNĐ"
+                android:id="@+id/tvTotalMoney"
+                />
         </RelativeLayout>
 
         <LinearLayout

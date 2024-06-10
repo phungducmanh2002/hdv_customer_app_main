@@ -2,6 +2,7 @@ package com.example.hotel_customer.view.custome;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import com.example.hotel_customer.databinding.CustomeInputBinding;
 import com.example.hotel_customer.helper.DataHelper;
 import com.example.hotel_customer.interfaces.OnEvent;
 import com.example.hotel_customer.model.HotelItemData;
+import com.example.hotel_customer.remote.data.Hotel;
 import com.example.hotel_customer.view.hotel.HotelActivity;
 
 public class HotelItem extends LinearLayout implements CustomeView {
@@ -21,6 +23,7 @@ public class HotelItem extends LinearLayout implements CustomeView {
         @Override
         public void action(Object... objects) {
             Intent hotel = new Intent(getContext(), HotelActivity.class);
+            hotel.putExtra("idHotel", idHotel);
             getContext().startActivity(hotel);
         }
     };
@@ -57,18 +60,20 @@ public class HotelItem extends LinearLayout implements CustomeView {
         });
     }
 
-    public void setDataUI(HotelItemData hotelItemData) {
-        if (hotelItemData == null)
+    public void setDataUI(Hotel hotel) {
+        if (hotel == null)
             return;
-        idHotel = hotelItemData.getId();
-        String minRoomPrice = DataHelper.GetMoney(hotelItemData.getMinRoomPrice());
-        String maxRoomPrice = DataHelper.GetMoney(hotelItemData.getMaxRoomPrice());
+        idHotel = hotel.getId();
+        String minRoomPrice = DataHelper.GetMoney(hotel.getMinPrice());
+        String maxRoomPrice = DataHelper.GetMoney(hotel.getMaxPrice());
         String roomPriceRange = String.format("%s - %s", minRoomPrice, maxRoomPrice);
 
-        binding.image.setImageBitmap(hotelItemData.getImage());
-        binding.tvHotelName.setText(hotelItemData.getName());
-        binding.tvStar.setText(Float.toString(hotelItemData.getStar()));
+        binding.tvHotelName.setText(hotel.getName());
+        binding.tvStar.setText(Float.toString(hotel.getStar()));
         binding.tvRoomPriceRange.setText(roomPriceRange);
+    }
+    public void setAvatar(Bitmap bitmap){
+        binding.image.setImageBitmap(bitmap);
     }
 
     public void setOnEvent(OnEvent onClick){

@@ -3,21 +3,25 @@ package com.example.hotel_customer.view.hotel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.hotel_customer.Application;
-import com.example.hotel_customer.R;
+import com.example.hotel_customer.controller.HomeController;
 import com.example.hotel_customer.databinding.ActivityHomeBinding;
+import com.example.hotel_customer.remote.data.Hotel;
 import com.example.hotel_customer.view.account.ProfileActivity;
 import com.example.hotel_customer.view.account.SigninActivity;
 import com.example.hotel_customer.view.account.SignupActivity;
+import com.example.hotel_customer.view.base.BaseActivity;
+import com.example.hotel_customer.view.custome.HotelItem;
+import com.example.hotel_customer.view.custome.HotelPanel;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity<HomeController> {
     ActivityHomeBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +34,27 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        
+        initData();
         setEvent();
     }
 
-    private void setEvent() {
+    private void initData() {
+        this.controller = new HomeController(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initUI();
-        
+        loadHotel();
+    }
+
+    private void loadHotel() {
+        this.controller.loadHotelData();
+    }
+
+    private void setEvent() {
+
         binding.profile.setOnClickListener(v -> {
             handleOpenProfile();
         });
@@ -61,7 +79,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        if (Application.isLogined){
+        if (Application.token != null){
             initUILogined();
         }
         else{
@@ -82,5 +100,30 @@ public class HomeActivity extends AppCompatActivity {
     private void handleOpenProfile() {
         Intent profile = new Intent(this, ProfileActivity.class);
         startActivity(profile);
+    }
+
+    // api response
+
+    public void renderHotelsNewest(Hotel[] hotels){
+        binding.hotelsNewest.removeAllViews();
+        for (Hotel hotel: hotels) {
+            HotelItem hotelItem = new HotelItem(binding.hotelsNewest.getContext());
+            hotelItem.setDataUI(hotel);
+            controller.loadHotelAvatar(hotel.getId(), bitmap -> {
+                hotelItem.setAvatar(bitmap);
+            });
+            binding.hotelsNewest.addView(hotelItem);
+        }
+    }
+    public void renderHotelsBest(Hotel[] hotels){
+        binding.hotelsBest.removeAllViews();
+        for (Hotel hotel: hotels) {
+            HotelPanel hotelPanel = new HotelPanel(binding.hotelsBest.getContext());
+            hotelPanel.setDataUI(hotel);
+            controller.loadHotelAvatar(hotel.getId(), bitmap -> {
+                hotelPanel.setAvatar(bitmap);
+            });
+            binding.hotelsBest.addView(hotelPanel);
+        }
     }
 }

@@ -45,7 +45,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Khách sạn chân trời bến nước"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+
+                    />
 
                 <TextView
                     android:id="@+id/tvHotelDescription"
@@ -78,6 +80,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="80808080"
+                            android:id="@+id/tvHotline"
                             />
                     </LinearLayout>
 
@@ -104,6 +107,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/tvStar"
                             android:text="5" />
                     </LinearLayout>
 
@@ -122,7 +126,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="200.000 VNĐ - 500.000 VNĐ" />
+                            android:text="200.000 VNĐ - 500.000 VNĐ"
+                            android:id="@+id/tvRoomPrice"
+                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -173,7 +179,9 @@
                     android:layout_height="wrap_content">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hotelsNear"
+                        >
 
                         <com.example.hotel_customer.view.custome.HotelPanel
                             android:layout_width="wrap_content"

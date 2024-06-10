@@ -54,6 +54,7 @@
                 android:hint="Lời nhắn..."
                 android:textAlignment="textStart"
                 android:padding="10dp"
+                android:id="@+id/tvNote"
                 />
 
         </LinearLayout>

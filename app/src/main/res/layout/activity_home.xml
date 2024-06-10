@@ -20,7 +20,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_fill_rounded_white"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -58,7 +57,9 @@
                 <RelativeLayout
                     android:id="@+id/headerLogined"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_fill_rounded_white"
+                    >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -66,6 +67,7 @@
                         android:layout_alignParentLeft="true"
                         android:gravity="center"
                         android:padding="10dp"
+                        android:visibility="gone"
                         >
 
                         <ImageView
@@ -89,6 +91,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
                             android:gravity="center"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView
@@ -161,7 +164,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/hotelsBest"
+                        >
 
                         <com.example.hotel_customer.view.custome.HotelPanel
                             android:layout_width="wrap_content"
@@ -212,7 +217,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/hotelsNewest"
+                    >
 
                     <com.example.hotel_customer.view.custome.HotelItem
                         android:layout_width="match_parent"

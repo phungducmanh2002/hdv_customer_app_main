@@ -1,4 +1,4 @@
-package com.example.hotel_customer.remote.data;
+package com.example.hotel_customer.model;
 
 import android.graphics.Bitmap;
 

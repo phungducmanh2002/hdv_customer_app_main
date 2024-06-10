@@ -33,68 +33,20 @@
                     android:layout_marginLeft="20dp"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <com.example.hotel_customer.view.custome.PickDate
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:orientation="vertical">
+                        app:pickDateLabel="Checkin"
+                        android:layout_marginRight="50dp"
+                        android:id="@+id/pdCheckin"
+                        />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="checkin"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/ic_date" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="18/11/2002" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <com.example.hotel_customer.view.custome.PickDate
+                        app:pickDateLabel="Checkout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="checkout"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/ic_date"
-
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="18/11/2002" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:id="@+id/pdCheckout"
+                        />
 
                 </LinearLayout>
 
@@ -106,10 +58,11 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:background="@drawable/bg_fill_rounded_orange"
+                        android:background="@drawable/selector_button"
                         android:text="Thêm"
                         android:textColor="@color/white"
                         android:id="@+id/btnAddRoom"
+                        android:enabled="false"
                         />
                 </RelativeLayout>
 
@@ -128,7 +81,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/rooms"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -137,112 +92,7 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:layout_marginBottom="10dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="A01" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Single queen" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="100.000 VNĐ" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_close" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_fill_rounded_white"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:layout_marginBottom="10dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="A01" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Single queen" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="100.000 VNĐ" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_close" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_fill_rounded_white"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:layout_marginBottom="10dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="A01" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="Single queen" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="100.000 VNĐ" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_close" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_fill_rounded_white"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:visibility="gone"
                         >
 
                         <TextView
@@ -289,8 +139,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="400.000 VNĐ"
-                        android:textStyle="bold" />
+                        android:text="0 VNĐ"
+                        android:textStyle="bold"
+                        android:id="@+id/totalMoney"
+                        />
 
                 </RelativeLayout>
 
@@ -306,7 +158,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bg_fill_rounded_blue"
+                android:background="@drawable/selector_button_blue"
+                android:enabled="false"
                 android:text="Tiếp"
                 android:textColor="@color/white"
                 android:id="@+id/btnNext"

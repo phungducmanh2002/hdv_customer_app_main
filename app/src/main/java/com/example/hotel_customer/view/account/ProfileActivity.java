@@ -2,6 +2,7 @@ package com.example.hotel_customer.view.account;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,17 +16,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hotel_customer.Application;
 import com.example.hotel_customer.R;
 import com.example.hotel_customer.adapter.RoomClassAdapter;
+import com.example.hotel_customer.controller.ProfileController;
 import com.example.hotel_customer.databinding.ActivityProfileBinding;
+import com.example.hotel_customer.helper.DataHelper;
+import com.example.hotel_customer.remote.data.Account;
 import com.example.hotel_customer.remote.data.RoomClass;
+import com.example.hotel_customer.remote.data.User;
 import com.example.hotel_customer.view.base.BaseActivity;
 import com.example.hotel_customer.view.booking.BookingHistoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity<ProfileController> {
     ActivityProfileBinding binding;
     Dialog dialogChooseEditInfo, dialogComfirmLogout;
 
@@ -41,7 +47,22 @@ public class ProfileActivity extends BaseActivity {
             return insets;
         });
 
+        this.controller = new ProfileController(this);
         setEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserInfo();
+    }
+
+    private void loadUserInfo() {
+        if (Application.user == null) {
+            controller.loadUser(Application.token);
+        } else {
+            renderInfo();
+        }
     }
 
     private void setEvent() {
@@ -65,14 +86,14 @@ public class ProfileActivity extends BaseActivity {
             dialogComfirmLogout.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
             dialogComfirmLogout.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            TextView tvContent =  dialogComfirmLogout.findViewById(R.id.tvContent);
+            TextView tvContent = dialogComfirmLogout.findViewById(R.id.tvContent);
             tvContent.setText("bạn có muốn đăng xuất?");
 
             dialogComfirmLogout.findViewById(R.id.btnComfirm).setOnClickListener(v -> {
                 handleLogout();
                 dialogComfirmLogout.cancel();
             });
-            
+
             dialogComfirmLogout.findViewById(R.id.btnCancle).setOnClickListener(v -> {
                 dialogComfirmLogout.cancel();
             });
@@ -82,6 +103,8 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void handleLogout() {
+        Application.token = null;
+        finish();
     }
 
     private void showDialogChooseEditInfo() {
@@ -118,5 +141,31 @@ public class ProfileActivity extends BaseActivity {
     private void handleEditAccount() {
         Intent editAccount = new Intent(this, EditAccountActivity.class);
         startActivity(editAccount);
+    }
+
+    public void onLoadUserSuccess(User user) {
+        Application.user = user;
+        controller.loadAccount(user.getIdAccount());
+    }
+
+    public void onLoadAccountSuccess(Account account) {
+        Application.account = account;
+        renderInfo();
+    }
+
+    private void renderInfo() {
+        User user = Application.user;
+        controller.loadUserAvatar(user.getId());
+
+        Account account = Application.account;
+        binding.tvUsername.setText(user.getUsername());
+        binding.tvIdUser.setText(Integer.toString(user.getId()));
+        binding.tvFirstName.setText(account.getFirstName());
+        binding.tvLastName.setText(account.getLastName());
+        binding.tvGender.setText(account.getGender() == 0 ? "nam" : account.getGender() == 1 ? "nữ" : "khác");
+        binding.tvBirthDay.setText(DataHelper.Date2String(account.getBirthDay()));
+    }
+    public void onLoadUserAvatarSuccess(Bitmap bitmap) {
+        binding.avatar.setImageBitmap(bitmap);
     }
 }

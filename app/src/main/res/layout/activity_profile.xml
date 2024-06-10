@@ -28,14 +28,18 @@
                 <ImageView
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:src="@drawable/img_hotel" />
+                    android:src="@drawable/img_hotel"
+                    android:id="@+id/avatar"
+                    />
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Phùng Đức Mạnh" />
+                android:text="Phùng Đức Mạnh"
+                android:id="@+id/tvUsername"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -60,7 +64,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="21312" />
+                    android:text="21312"
+                    android:id="@+id/tvIdUser"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -78,7 +84,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phùng" />
+                    android:text="Phùng"
+                    android:id="@+id/tvFirstName"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -96,7 +104,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đức Mạnh" />
+                    android:text="Đức Mạnh"
+                    android:id="@+id/tvLastName"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -114,7 +124,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="nam" />
+                    android:text="nam"
+                    android:id="@+id/tvGender"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -132,25 +144,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="18/11/2002" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="Loại tài khoản: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="customer" />
+                    android:text="18/11/2002"
+                    android:id="@+id/tvBirthDay"
+                    />
             </LinearLayout>
 
         </LinearLayout>

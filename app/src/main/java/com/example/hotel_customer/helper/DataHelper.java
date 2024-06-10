@@ -2,6 +2,9 @@ package com.example.hotel_customer.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -17,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DataHelper {
-
+    private static final Gson gson = new Gson();
     // DATE
     public static int GetCurrentMonth(){
         Calendar calendar = Calendar.getInstance();
@@ -44,6 +47,13 @@ public class DataHelper {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(date);
     }
+    public static String Date2String(Date date, String format){
+        if(date == null){
+            return "";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(date);
+    }
     public static Date MinusDay(Date date, int number){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -65,6 +75,11 @@ public class DataHelper {
         Type type = TypeToken.getParameterized(cls, cls).getType();
         return gson.fromJson(json,type);
     }
+    public static <T> T convert(Object data, Class<T> clazz) {
+        String json = gson.toJson(data);
+        Log.d("HUOJNOUJNLUOJ", json);
+        return gson.fromJson(json, clazz);
+    }
     public static <T> T ConvertFromObject(Object object, Class<T> cls){
         LinkedTreeMap<?, ?> linkedTreeMap = (LinkedTreeMap<?, ?>)object;
         Gson gson = new Gson();
@@ -73,7 +88,7 @@ public class DataHelper {
         return gson.fromJson(json,type);
     }
 
-    public static <T> T ConvertFromObject2(Object object, Class<T> cls){
+    public static <T> T ConvertFromObjectArr(Object object, Class<T> cls){
         Gson gson = new Gson();
         String json = gson.toJson(object); // Convert object to JSON string
         return gson.fromJson(json, cls); // Convert JSON string to desired class
@@ -109,5 +124,9 @@ public class DataHelper {
 
     public static Bitmap Bytes2Bitmap(byte[] byteArray){
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        return ((BitmapDrawable) drawable).getBitmap();
     }
 }

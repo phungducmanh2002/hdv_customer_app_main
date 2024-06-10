@@ -144,4 +144,12 @@ public class PickDate extends LinearLayout implements CustomeView{
     public Date getPickDateDate(){
         return selectDate;
     }
+
+    public void setOnAfterPickDate(OnEvent onAfterPickDate){
+        this.onAfterPickDate = onAfterPickDate;
+    }
+    public void setOnBeforePickDate(OnEvent onBeforePickDate){
+        this.onBeforePickDate = onBeforePickDate;
+    }
+
 }

@@ -107,5 +107,6 @@ public class SignupActivity extends BaseActivity<SignupController> {
         signin.putExtra("email", binding.ipEmail.getInputText());
         signin.putExtra("password", binding.ipPassword.getInputText());
         startActivity(signin);
+        finish();
     }
 }

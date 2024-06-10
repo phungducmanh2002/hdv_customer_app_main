@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ResData {
-    int code;
+    int code; // 200, 201, 400 404, 500
     String message;
     Object data;
 }

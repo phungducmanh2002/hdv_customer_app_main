@@ -28,7 +28,7 @@ public class SignupController extends BaseController<SignupActivity, AccountRepo
         account.setGender(gender);
         account.setBirthDay(birthDay);
 
-        repository.createUser(account, new Callback<ResData>() {
+        repository.createAccount(account, new Callback<ResData>() {
             @Override
             public void onResponse(Call<ResData> call, Response<ResData> response) {
                 try{
