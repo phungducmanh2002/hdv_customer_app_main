@@ -11,6 +11,7 @@ import com.example.hotel_customer.helper.DataHelper;
 import com.example.hotel_customer.helper.RESCallback;
 import com.example.hotel_customer.remote.data.Hotel;
 import com.example.hotel_customer.remote.data.ResImage;
+import com.example.hotel_customer.remote.data.User;
 import com.example.hotel_customer.remote.repositories.HotelRepo;
 import com.example.hotel_customer.view.hotel.HomeActivity;
 
@@ -56,6 +57,17 @@ public class HomeController extends BaseController<HomeActivity, HotelRepo> {
         }, message -> {
             view.cancleWaitingDialog();
             onLoadIMG.action(DataHelper.drawableToBitmap(Application.GetContext().getDrawable(R.drawable.img_hotel_hai)));
+        }));
+    }
+    public void loadUser(String token){
+        view.showWaitingDialog();
+        repository.decodeToken(token, RESCallback.CB(resData -> {
+            User user = DataHelper.ConvertFromObject(resData.getData(), User.class);
+            view.onLoadUserFinish(user);
+            view.cancleWaitingDialog();
+        }, message -> {
+            view.cancleWaitingDialog();
+            view.showNotifyDialog(message);
         }));
     }
 }

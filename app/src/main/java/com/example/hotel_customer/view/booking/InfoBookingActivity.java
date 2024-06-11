@@ -11,8 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hotel_customer.Application;
 import com.example.hotel_customer.R;
-import com.example.hotel_customer.controller.BookingController;
 import com.example.hotel_customer.controller.BookingController2;
 import com.example.hotel_customer.databinding.ActivityInfoBookingBinding;
 import com.example.hotel_customer.remote.data.Booking;
@@ -55,6 +55,9 @@ public class InfoBookingActivity extends BaseActivity<BookingController2> {
             booking.setPersonName(binding.ipPersonName.getInputText());
             booking.setPersonPhone(binding.ipPersonPhone.getInputText());
             booking.setNote(binding.tvNote.getText().toString());
+            if (Application.user != null){
+                booking.setIdUser(Application.user.getId());
+            }
             controller.createBooking(booking);
         }
 
@@ -83,5 +86,6 @@ public class InfoBookingActivity extends BaseActivity<BookingController2> {
         Intent booking = new Intent(this, BookingActivity.class);
         booking.putExtra("idBooking", booking1.getId());
         startActivity(booking);
+        finish();
     }
 }

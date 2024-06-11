@@ -50,17 +50,19 @@ public class ProfileActivity extends BaseActivity<ProfileController> {
         this.controller = new ProfileController(this);
         setEvent();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         loadUserInfo();
     }
-
     private void loadUserInfo() {
         if (Application.user == null) {
             controller.loadUser(Application.token);
-        } else {
+        }
+        if(Application.account == null){
+            controller.loadAccount(Application.user.getIdAccount());
+        }
+        else {
             renderInfo();
         }
     }

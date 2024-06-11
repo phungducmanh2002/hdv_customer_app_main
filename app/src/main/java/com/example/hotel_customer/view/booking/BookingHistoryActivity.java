@@ -14,12 +14,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hotel_customer.Application;
 import com.example.hotel_customer.R;
 import com.example.hotel_customer.adapter.SpinnerAdapter;
 import com.example.hotel_customer.controller.BookingHistoryController;
 import com.example.hotel_customer.databinding.ActivityBookingHistoryBinding;
 import com.example.hotel_customer.model.AdapterModel;
 import com.example.hotel_customer.model.BookingStatus;
+import com.example.hotel_customer.remote.data.Booking;
 import com.example.hotel_customer.remote.data.RoomClass;
 import com.example.hotel_customer.view.base.BaseActivity;
 
@@ -30,6 +32,7 @@ public class BookingHistoryActivity extends BaseActivity<BookingHistoryControlle
     ActivityBookingHistoryBinding binding;
     SpinnerAdapter spinnerAdapter;
     List<BookingStatus> statuses;
+    Integer idStatusCurrent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,15 +69,11 @@ public class BookingHistoryActivity extends BaseActivity<BookingHistoryControlle
     }
 
     private void setEvent() {
-        binding.getRoot().setOnClickListener(v -> {
-            Intent booking = new Intent(this, BookingActivity.class);
-            startActivity(booking);
-        });
-
         binding.spStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 BookingStatus bookingStatus = (BookingStatus) binding.spStatus.getItemAtPosition(position);
+                idStatusCurrent = bookingStatus.getId();
                 loadUserBooking(bookingStatus.getId());
             }
 
@@ -85,5 +84,31 @@ public class BookingHistoryActivity extends BaseActivity<BookingHistoryControlle
         });
     }
     private void loadUserBooking(int idStatus) {
+        controller.loadUserBookings(Application.user.getId(), idStatus);
+    }
+    public void onLoadBookingsSuccess(Booking[] bookings) {
+        binding.bookings.removeAllViews();
+        for (Booking b: bookings
+             ) {
+            com.example.hotel_customer.view.custome.Booking bookingUI = new com.example.hotel_customer.view.custome.Booking(binding.bookings.getContext());
+            bookingUI.setDataUI(b);
+            bookingUI.setOnView(objects -> {
+                Intent booking = new Intent(this, BookingActivity.class);
+                booking.putExtra("idBooking", b.getId());
+                startActivity(booking);
+            });
+            bookingUI.setOnCancle(objects -> {
+                cancleBooking(b.getId());
+            });
+            binding.bookings.addView(bookingUI);
+        }
+    }
+    private void cancleBooking(Integer id) {
+        controller.cancleBooking(id);
+    }
+    public void onCancleBookingSuccess() {
+        if(idStatusCurrent != null){
+            loadUserBooking(idStatusCurrent);
+        }
     }
 }

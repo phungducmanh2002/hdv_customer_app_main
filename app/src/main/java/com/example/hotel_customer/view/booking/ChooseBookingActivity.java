@@ -112,6 +112,7 @@ public class ChooseBookingActivity extends BaseActivity<BookingController> {
         Intent intent = new Intent(this, InfoBookingActivity.class);
         intent.putExtra("booking", booking);
         startActivity(intent);
+        finish();
     }
     private void showDialogSelectRoom() {
         if(dialogChoooseRoom == null){

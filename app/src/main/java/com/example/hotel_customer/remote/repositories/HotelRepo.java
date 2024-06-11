@@ -3,20 +3,24 @@ package com.example.hotel_customer.remote.repositories;
 import android.widget.ImageView;
 
 import com.example.hotel_customer.cache.OnLoadIMG;
+import com.example.hotel_customer.model.ContainToken;
 import com.example.hotel_customer.model.ResData;
 import com.example.hotel_customer.remote.RetrofitClient;
 import com.example.hotel_customer.remote.repositories.interfaces.Repository;
 import com.example.hotel_customer.remote.service.HotelService;
 import com.example.hotel_customer.remote.service.ResService;
+import com.example.hotel_customer.remote.service.UserService;
 
 import retrofit2.Callback;
 
 public class HotelRepo implements Repository {
     HotelService hotelService;
     ResService resService;
+    UserService userService;
     public HotelRepo(){
         hotelService = RetrofitClient.gI().getRetrofit().create(HotelService.class);
         resService = RetrofitClient.gI().getRetrofit().create(ResService.class);
+        userService = RetrofitClient.gI().getRetrofit().create(UserService.class);
     }
 
     // home activity
@@ -44,5 +48,12 @@ public class HotelRepo implements Repository {
 
     public void getHotelsNear(int idHotel, Callback<ResData> callback){
         hotelService.getHotelsNear(idHotel, 1).enqueue(callback);
+    }
+
+    // user
+    public void decodeToken(String token, Callback<ResData> callback) {
+        ContainToken containToken = new ContainToken();
+        containToken.setToken(token);
+        userService.decodeToken(containToken).enqueue(callback);
     }
 }

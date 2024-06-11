@@ -14,6 +14,7 @@ import com.example.hotel_customer.Application;
 import com.example.hotel_customer.controller.HomeController;
 import com.example.hotel_customer.databinding.ActivityHomeBinding;
 import com.example.hotel_customer.remote.data.Hotel;
+import com.example.hotel_customer.remote.data.User;
 import com.example.hotel_customer.view.account.ProfileActivity;
 import com.example.hotel_customer.view.account.SigninActivity;
 import com.example.hotel_customer.view.account.SignupActivity;
@@ -46,7 +47,6 @@ public class HomeActivity extends BaseActivity<HomeController> {
     protected void onResume() {
         super.onResume();
         initUI();
-        loadHotel();
     }
 
     private void loadHotel() {
@@ -81,10 +81,12 @@ public class HomeActivity extends BaseActivity<HomeController> {
     private void initUI() {
         if (Application.token != null){
             initUILogined();
+            controller.loadUser(Application.token);
         }
         else{
             initUINoLogin();
         }
+        loadHotel();
     }
 
     private void initUINoLogin() {
@@ -125,5 +127,8 @@ public class HomeActivity extends BaseActivity<HomeController> {
             });
             binding.hotelsBest.addView(hotelPanel);
         }
+    }
+    public void onLoadUserFinish(User user) {
+        Application.user = user;
     }
 }
