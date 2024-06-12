@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -12,16 +13,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hotel_customer.Application;
 import com.example.hotel_customer.R;
+import com.example.hotel_customer.controller.EditAvatarController;
 import com.example.hotel_customer.databinding.ActivityEditAvatarBinding;
 import com.example.hotel_customer.helper.DataHelper;
 import com.example.hotel_customer.helper.FileHelper;
+import com.example.hotel_customer.view.base.BaseActivity;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class EditAvatarActivity extends AppCompatActivity {
+public class EditAvatarActivity extends BaseActivity<EditAvatarController> {
     ActivityEditAvatarBinding binding;
     byte[] avatar;
     @Override
@@ -35,7 +39,8 @@ public class EditAvatarActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        
+
+        controller = new EditAvatarController(this);
         setEvent();
     }
 
@@ -43,8 +48,19 @@ public class EditAvatarActivity extends AppCompatActivity {
         binding.btnChooseAvatar.setOnClickListener(v -> {
             ImagePicker.with(this).crop().compress(1024).maxResultSize(1080,1080).start();
         });
-
         binding.btnChooseAvatar.callOnClick();
+
+        binding.btnNext.setOnClickListener(v -> {
+            handleNext();
+        });
+    }
+
+    private void handleNext() {
+        if (avatar == null){
+            binding.btnChooseAvatar.callOnClick();
+            return;
+        }
+        controller.updateUserAvatar(Application.user.getId(), avatar);
     }
 
     @Override
@@ -71,5 +87,9 @@ public class EditAvatarActivity extends AppCompatActivity {
         byte[] avatarDataClone = avatarData.clone();
         this.avatar = avatarData.clone();
         binding.avatar.setImageBitmap(DataHelper.Bytes2Bitmap(avatarDataClone));
+    }
+
+    public void onUpdateUserAvatarSuccess() {
+        finish();
     }
 }

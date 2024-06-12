@@ -62,7 +62,21 @@ public class BookingActivity extends BaseActivity<BookingController3> {
         binding.tvIdBooking.setText(Integer.toString(booking.getId()));
         binding.tvCheckin.setText(DataHelper.Date2String(booking.getCheckin()));
         binding.tvCheckout.setText(DataHelper.Date2String(booking.getCheckout()));
-        binding.tvStatus.setText(Integer.toString(booking.getStatus()));
+        if(booking.getStatus() == 1){
+            binding.tvStatus.setText("chưa thanh toán");
+        }
+        if(booking.getStatus() == 2){
+            binding.tvStatus.setText("đã thanh toán");
+        }
+        if(booking.getStatus() == 3){
+            binding.tvStatus.setText("checkin");
+        }
+        if(booking.getStatus() == 4){
+            binding.tvStatus.setText("checkout");
+        }
+        if(booking.getStatus() == 5){
+            binding.tvStatus.setText("đã hủy");
+        }
 
         float totalMoney = 0.0f;
         binding.rooms.removeAllViews();

@@ -28,6 +28,6 @@ public interface BookingService {
     @GET("/booking/users/{idUser}/bookings")
     public Call<ResData> getUserBookings(@Path("idUser") int idUser, @Query("status") int status);
 
-    @PUT("/bookings/{idBooking}")
+    @PUT("/booking/bookings/{idBooking}")
     Call<ResData> updateBookingStatus(@Path("idBooking") Integer idBooking, @Query("status") int status);
 }

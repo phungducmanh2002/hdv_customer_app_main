@@ -1,5 +1,7 @@
 package com.example.hotel_customer.controller;
 
+import android.util.Log;
+
 import com.example.hotel_customer.cache.ImageRepoCache;
 import com.example.hotel_customer.controller.base.BaseController;
 import com.example.hotel_customer.helper.DataHelper;
@@ -47,13 +49,14 @@ public class ProfileController extends BaseController<ProfileActivity, AccountRe
         view.showWaitingDialog();
         repository.getUserAvatarId(idUser, RESCallback.CB(resData -> {
             Photo photo = DataHelper.ConvertFromObject(resData.getData(), Photo.class);
+            Log.d("LOADUSERAVATAR", String.format("user avtar id: %d", photo.getId()));
             imageRepoCache.getImage(photo.getId(), bitmap -> {
                 view.onLoadUserAvatarSuccess(bitmap);
             });
             view.cancleWaitingDialog();
         }, message -> {
             view.cancleWaitingDialog();
-            view.showNotifyDialog(message);
+//            view.showNotifyDialog(message);
         }));
     }
 }

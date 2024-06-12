@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/img_avatar"
+                android:src="@drawable/ic_avatar_male"
                 android:id="@+id/avatar"
                 />
         </androidx.cardview.widget.CardView>

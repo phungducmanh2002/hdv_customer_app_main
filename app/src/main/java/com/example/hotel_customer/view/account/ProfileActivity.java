@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,7 +61,7 @@ public class ProfileActivity extends BaseActivity<ProfileController> {
             controller.loadUser(Application.token);
         }
         if(Application.account == null){
-            controller.loadAccount(Application.user.getIdAccount());
+            controller.loadAccount(Application.user.getId());
         }
         else {
             renderInfo();
@@ -106,6 +107,8 @@ public class ProfileActivity extends BaseActivity<ProfileController> {
 
     private void handleLogout() {
         Application.token = null;
+        Application.user = null;
+        Application.account = null;
         finish();
     }
 
@@ -147,7 +150,8 @@ public class ProfileActivity extends BaseActivity<ProfileController> {
 
     public void onLoadUserSuccess(User user) {
         Application.user = user;
-        controller.loadAccount(user.getIdAccount());
+        Log.d("ONLOADUSER", user.toString());
+        controller.loadAccount(user.getId());
     }
 
     public void onLoadAccountSuccess(Account account) {
@@ -168,6 +172,8 @@ public class ProfileActivity extends BaseActivity<ProfileController> {
         binding.tvBirthDay.setText(DataHelper.Date2String(account.getBirthDay()));
     }
     public void onLoadUserAvatarSuccess(Bitmap bitmap) {
-        binding.avatar.setImageBitmap(bitmap);
+        if(bitmap != null) {
+            binding.avatar.setImageBitmap(bitmap);
+        }
     }
 }

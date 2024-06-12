@@ -51,9 +51,24 @@ public class Booking extends LinearLayout implements CustomeView {
             return;
         }
         binding.tvId.setText(Integer.toString(booking.getId()));
-        binding.tvStatus.setText(Integer.toString(booking.getStatus()));
         binding.tvCheckin.setText(DataHelper.Date2String(booking.getCheckin()));
         binding.tvCheckout.setText(DataHelper.Date2String(booking.getCheckout()));
+
+        if(booking.getStatus() == 1){
+            binding.tvStatus.setText("chưa thanh toán");
+        }
+        if(booking.getStatus() == 2){
+            binding.tvStatus.setText("đã thanh toán");
+        }
+        if(booking.getStatus() == 3){
+            binding.tvStatus.setText("checkin");
+        }
+        if(booking.getStatus() == 4){
+            binding.tvStatus.setText("checkout");
+        }
+        if(booking.getStatus() == 5){
+            binding.tvStatus.setText("đã hủy");
+        }
 
         if (booking.getStatus() < 3){
             binding.btnCancle.setVisibility(VISIBLE);

@@ -2,6 +2,7 @@ package com.example.hotel_customer;
 
 import android.content.Context;
 
+import com.bumptech.glide.Glide;
 import com.example.hotel_customer.remote.data.Account;
 import com.example.hotel_customer.remote.data.User;
 

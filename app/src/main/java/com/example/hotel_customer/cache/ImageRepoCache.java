@@ -15,6 +15,9 @@ public class ImageRepoCache implements ImageProxy {
         }
         return instance;
     }
+    public static void reset(){
+        instance = null;
+    }
 
     List<Photo> photos = new ArrayList<>();
     int maxSize = 50;

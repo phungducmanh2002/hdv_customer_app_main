@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.hotel_customer.Application;
@@ -23,6 +24,7 @@ public class ImageRepo implements ImageProxy {
     public void getImage(int id, OnLoadIMG onLoadIMG) {
         Glide.with(Application.GetContext())
                 .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .load(getImageUrl(id))
                 .into(new CustomTarget<Bitmap>() {
                     @Override
